@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ôn thi AI Developer – Level 1 &amp; 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800;900&family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;800&family=Lexend:wght@300;400;600;700&family=Nunito:wght@400;600;800;900&display=swap&subset=vietnamese" rel="stylesheet">
+<style>
+/* ---------- theme tokens ---------- */
+[data-theme="blueprint"]{--bg:#F3F6FB;--bg2:#E8EEF8;--surface:#FFFFFF;--ink:#0E1F3A;--mut:#5A6A85;--line:#D6DEEB;--acc:#2457F5;--acc-ink:#fff;--acc2:#E8EEFF;--ok:#0F9D6E;--bad:#D93A4F;--warn:#C27C0E;
+--fd:'Be Vietnam Pro',system-ui,sans-serif;--fb:'Be Vietnam Pro',system-ui,sans-serif;--r:10px;--r2:6px;--bw:1px;--sh:0 1px 2px rgba(14,31,58,.06);--hw:800;--ls:-.02em;
+--bgimg:linear-gradient(var(--bg2) 1px,transparent 1px),linear-gradient(90deg,var(--bg2) 1px,transparent 1px);--bgsize:28px 28px}
+[data-theme="aurora"]{--bg:#100D2C;--bg2:#0A3442;--surface:rgba(255,255,255,.07);--ink:#EEF2FF;--mut:#A6AFD6;--line:rgba(255,255,255,.14);--acc:#6EF0CF;--acc-ink:#0B1530;--acc2:rgba(110,240,207,.14);--ok:#6EF0CF;--bad:#FF7A9A;--warn:#FFD27A;
+--fd:'Lexend',system-ui,sans-serif;--fb:'Lexend',system-ui,sans-serif;--r:20px;--r2:12px;--bw:1px;--sh:0 10px 40px rgba(0,0,0,.25);--hw:700;--ls:-.03em;
+--bgimg:radial-gradient(60% 50% at 15% 10%,rgba(167,139,250,.45),transparent 70%),radial-gradient(50% 45% at 90% 20%,rgba(56,189,248,.30),transparent 70%),radial-gradient(60% 60% at 60% 100%,rgba(110,240,207,.22),transparent 70%);--bgsize:auto}
+[data-theme="swiss"]{--bg:#FFFFFF;--bg2:#F2F2F2;--surface:#FFFFFF;--ink:#000;--mut:#555;--line:#000;--acc:#E10600;--acc-ink:#fff;--acc2:#FFE8E6;--ok:#007A3D;--bad:#E10600;--warn:#000;
+--fd:'Archivo',system-ui,sans-serif;--fb:'Archivo',system-ui,sans-serif;--r:0;--r2:0;--bw:2px;--sh:none;--hw:900;--ls:-.04em;--bgimg:none;--bgsize:auto}
+[data-theme="candy"]{--bg:#F1ECFF;--bg2:#E4DBFF;--surface:#FFFFFF;--ink:#241B4B;--mut:#5E5584;--line:#241B4B;--acc:#FF6FB0;--acc-ink:#241B4B;--acc2:#FFE066;--ok:#2FBF7F;--bad:#FF5C6C;--warn:#E8A400;
+--fd:'Nunito',system-ui,sans-serif;--fb:'Nunito',system-ui,sans-serif;--r:16px;--r2:10px;--bw:2px;--sh:4px 4px 0 #241B4B;--hw:900;--ls:-.01em;
+--bgimg:radial-gradient(#D9CEFF 2px,transparent 2px);--bgsize:22px 22px}
+[data-theme="ide"]{--bg:#1A1B26;--bg2:#16161E;--surface:#222436;--ink:#C8D3F5;--mut:#7F88B5;--line:#2F334D;--acc:#BB9AF7;--acc-ink:#1A1B26;--acc2:rgba(187,154,247,.13);--ok:#9ECE6A;--bad:#F7768E;--warn:#E0AF68;
+--fd:'JetBrains Mono',ui-monospace,monospace;--fb:'Be Vietnam Pro',system-ui,sans-serif;--r:6px;--r2:4px;--bw:1px;--sh:none;--hw:800;--ls:-.02em;--bgimg:none;--bgsize:auto}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);background-image:var(--bgimg);background-size:var(--bgsize);background-attachment:fixed;color:var(--ink);font:16px/1.6 var(--fb);min-height:100vh}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+a{color:var(--acc)}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+h1,h2,h3{font-family:var(--fd);font-weight:var(--hw);letter-spacing:var(--ls);line-height:1.15;margin:0}
+.mut{color:var(--mut)}
+.panel{background:var(--surface);border:var(--bw) solid var(--line);border-radius:var(--r);box-shadow:var(--sh)}
+[data-theme="aurora"] .panel{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:var(--r2);border:var(--bw) solid var(--line);background:var(--surface);cursor:pointer;font-weight:600;transition:transform .12s, background .12s}
+.btn:hover{border-color:var(--acc)}
+.btn:active{transform:translateY(1px)}
+.btn.pri{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+[data-theme="candy"] .btn{border-color:var(--line);box-shadow:3px 3px 0 var(--line)}
+[data-theme="candy"] .btn:active{box-shadow:1px 1px 0 var(--line);transform:translate(2px,2px)}
+[data-theme="swiss"] .btn.pri{border-color:#000}
+.btn.ghost{background:transparent}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+
+/* ---------- top bar ---------- */
+header.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:var(--bw) solid var(--line)}
+header.top .wrap{display:flex;align-items:center;gap:16px;height:60px}
+.brand{font-family:var(--fd);font-weight:var(--hw);font-size:18px;letter-spacing:var(--ls);cursor:pointer;background:none;border:0;padding:0}
+.brand span{color:var(--acc)}
+nav.main{display:flex;gap:4px;margin-left:12px}
+nav.main button{background:none;border:0;padding:8px 12px;border-radius:var(--r2);cursor:pointer;color:var(--mut);font-weight:600}
+nav.main button[aria-current="true"]{color:var(--ink);background:var(--acc2)}
+.spacer{flex:1}
+
+/* ---------- home ---------- */
+.hero{padding:56px 0 28px}
+.hero h1{font-size:clamp(34px,6vw,64px);max-width:16ch}
+[data-theme="swiss"] .hero h1{font-size:clamp(44px,8vw,96px);text-transform:none}
+.hero p.lead{font-size:19px;max-width:60ch;color:var(--mut);margin:18px 0 0}
+.rule{display:grid;grid-template-columns:repeat(4,1fr);margin:34px 0 8px;overflow:hidden}
+.rule div{padding:18px 20px;border-right:var(--bw) solid var(--line)}
+.rule div:last-child{border-right:0}
+.rule b{display:block;font-family:var(--fd);font-weight:var(--hw);font-size:clamp(26px,4vw,40px);letter-spacing:var(--ls);line-height:1.1}
+.rule small{color:var(--mut);font-size:14px}
+.rule .ok b{color:var(--ok)} .rule .bad b{color:var(--bad)} .rule .pass b{color:var(--acc)}
+[data-theme="swiss"] .rule .pass{background:var(--acc);color:#fff} [data-theme="swiss"] .rule .pass b,[data-theme="swiss"] .rule .pass small{color:#fff}
+.levels{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:28px 0}
+.lv{padding:26px;display:flex;flex-direction:column;gap:14px}
+.lv .tag{font-size:14px;color:var(--mut);font-weight:600}
+.lv h2{font-size:30px}
+.lv p{margin:0;color:var(--mut)}
+.lv .facts{display:flex;gap:18px;flex-wrap:wrap;font-size:14px}
+.lv .facts b{font-family:var(--fd);display:block;font-size:18px;color:var(--ink)}
+.lv .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+.section-h{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:44px 0 14px}
+.section-h h2{font-size:26px}
+.themes{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.tile{cursor:pointer;text-align:left;padding:0;border:0;background:none}
+.tile .pv{display:block;height:128px;border-radius:var(--r);border:var(--bw) solid var(--line);background:var(--bg);background-image:var(--bgimg);background-size:var(--bgsize);padding:14px;position:relative;overflow:hidden;box-shadow:var(--sh)}
+.tile .pv i{display:block;font-style:normal;font-family:var(--fd);font-weight:var(--hw);letter-spacing:var(--ls);color:var(--ink);font-size:20px;line-height:1.05}
+.tile .pv .ln{display:block;height:8px;border-radius:4px;background:var(--line);margin-top:10px;width:70%}
+.tile .pv .bt{position:absolute;left:14px;bottom:14px;background:var(--acc);color:var(--acc-ink);font:600 12px var(--fb);padding:5px 10px;border-radius:var(--r2)}
+.tile .pv .dot{position:absolute;right:14px;bottom:16px;width:14px;height:14px;border-radius:50%;background:var(--ok)}
+.tile .nm{display:block;margin-top:8px;font-weight:700}
+.tile .ds{display:block;font-size:13px;color:var(--mut);line-height:1.4}
+.tile[aria-pressed="true"] .pv{outline:3px solid var(--acc);outline-offset:3px}
+body .tile .nm,body .tile .ds{font-family:var(--fb)}
+
+/* ---------- level view ---------- */
+.lvhead{padding:40px 0 10px}
+.lvhead .tag{color:var(--mut);font-weight:600}
+.lvhead h1{font-size:clamp(32px,5vw,52px);margin-top:4px}
+.lvhead p{max-width:68ch;color:var(--mut);margin:12px 0 0}
+.tabs{display:flex;gap:6px;margin:24px 0 18px;border-bottom:var(--bw) solid var(--line)}
+.tabs button{background:none;border:0;border-bottom:3px solid transparent;padding:10px 14px;margin-bottom:calc(-1 * var(--bw));cursor:pointer;font-weight:700;color:var(--mut)}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--acc)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px}
+.chip{padding:6px 12px;border-radius:999px;border:var(--bw) solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;font-weight:600}
+[data-theme="swiss"] .chip{border-radius:0}
+.chip[aria-pressed="true"]{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+.topic{margin-bottom:22px}
+.topic h3{font-size:20px;margin:0 0 10px;display:flex;gap:10px;align-items:baseline}
+.topic h3 .code{color:var(--acc);font-family:var(--fd)}
+.kgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.k{padding:16px 18px}
+.k b{display:block;margin-bottom:4px}
+.k p{margin:0;color:var(--mut);font-size:15px}
+.tips{display:grid;gap:12px;counter-reset:tip}
+.tip{padding:18px 20px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px}
+.tip::before{counter-increment:tip;content:counter(tip);grid-row:span 2;font-family:var(--fd);font-weight:var(--hw);font-size:28px;color:var(--acc);line-height:1}
+.tip b{font-size:17px}
+.tip p{margin:0;color:var(--mut)}
+.sets{display:grid;gap:12px}
+.set{padding:18px 20px;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:18px}
+.set .num{font-family:var(--fd);font-weight:var(--hw);font-size:30px;color:var(--acc);min-width:42px}
+.set h3{font-size:18px}
+.set .meta{font-size:14px;color:var(--mut)}
+.best{font-size:14px;text-align:right}
+.best b{display:block;font-size:18px;font-family:var(--fd)}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:13px;font-weight:700}
+.pill.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.pill.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}
+[data-theme="swiss"] .pill{border-radius:0}
+
+/* ---------- exam ---------- */
+.exambar{position:sticky;top:60px;z-index:15;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:var(--bw) solid var(--line)}
+.exambar .wrap{display:flex;align-items:center;gap:16px;height:56px}
+.prog{flex:1;height:8px;background:var(--bg2);border-radius:99px;overflow:hidden}
+[data-theme="swiss"] .prog{border-radius:0;border:2px solid #000;height:12px}
+.prog i{display:block;height:100%;background:var(--acc);transition:width .25s}
+.timer{font-family:var(--fd);font-weight:700;font-variant-numeric:tabular-nums}
+.timer.low{color:var(--bad)}
+.exam{display:grid;grid-template-columns:1fr 260px;gap:22px;padding:24px 20px 60px}
+.qcard{padding:26px}
+.qmeta{display:flex;gap:10px;flex-wrap:wrap;align-items:center;font-size:14px;color:var(--mut);margin-bottom:12px}
+.qmeta .pts{font-weight:700;color:var(--ink)}
+.qtext{font-size:19px;line-height:1.55;font-weight:500;margin:0 0 20px;max-width:70ch}
+.opts{display:grid;gap:10px}
+.opt{display:grid;grid-template-columns:34px 1fr;gap:12px;align-items:start;text-align:left;padding:14px 16px;border:var(--bw) solid var(--line);border-radius:var(--r2);background:var(--surface);cursor:pointer;line-height:1.5}
+.opt:hover{border-color:var(--acc)}
+.opt .l{display:grid;place-items:center;width:30px;height:30px;border-radius:var(--r2);border:var(--bw) solid var(--line);font-family:var(--fd);font-weight:800;font-size:14px}
+.opt[aria-pressed="true"]{border-color:var(--acc);background:var(--acc2)}
+.opt[aria-pressed="true"] .l{background:var(--acc);color:var(--acc-ink);border-color:var(--acc)}
+[data-theme="candy"] .opt[aria-pressed="true"]{box-shadow:3px 3px 0 var(--line)}
+.qnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;align-items:center}
+.side{display:flex;flex-direction:column;gap:14px;align-self:start;position:sticky;top:132px}
+.palette{padding:16px}
+.palette h3{font-size:15px;margin-bottom:10px;font-family:var(--fb);font-weight:700;letter-spacing:0}
+.pgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.pgrid button{aspect-ratio:1;border-radius:var(--r2);border:var(--bw) solid var(--line);background:var(--surface);cursor:pointer;font-weight:700;font-size:13px;position:relative;padding:0}
+.pgrid button.ans{background:var(--acc2);border-color:var(--acc)}
+.pgrid button.cur{outline:2px solid var(--ink);outline-offset:1px}
+.pgrid button.flag::after{content:"";position:absolute;top:3px;right:3px;width:7px;height:7px;border-radius:50%;background:var(--warn)}
+.legend{display:grid;gap:4px;font-size:13px;color:var(--mut);margin-top:12px}
+.ev{padding:14px 16px;font-size:14px;color:var(--mut)}
+.ev b{color:var(--ink)}
+
+/* ---------- result ---------- */
+.res{padding:36px 0 60px}
+.score{display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center;padding:28px}
+.ring{--p:0;width:160px;height:160px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--c) calc(var(--p)*1%),var(--bg2) 0);position:relative}
+.ring::before{content:"";position:absolute;inset:14px;border-radius:50%;background:var(--surface)}
+[data-theme="aurora"] .ring::before{background:#1a1840}
+.ring b{position:relative;font-family:var(--fd);font-weight:var(--hw);font-size:34px;letter-spacing:var(--ls)}
+[data-theme="swiss"] .ring{border-radius:0;background:linear-gradient(to top,var(--c) calc(var(--p)*1%),var(--bg2) 0)} [data-theme="swiss"] .ring::before{border-radius:0;inset:0;background:transparent}
+.verdict{font-family:var(--fd);font-weight:var(--hw);font-size:clamp(30px,5vw,48px);letter-spacing:var(--ls)}
+.verdict.ok{color:var(--ok)} .verdict.bad{color:var(--bad)}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-top:12px}
+.stats div b{display:block;font-family:var(--fd);font-size:22px}
+.stats div{font-size:14px;color:var(--mut)}
+.bars{display:grid;gap:10px;padding:22px}
+.bar{display:grid;grid-template-columns:200px 1fr 70px;gap:12px;align-items:center;font-size:14px}
+.bar .t{height:10px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.bar .t i{display:block;height:100%;background:var(--acc)}
+.rv{padding:20px 22px;margin-bottom:12px}
+.rv .h{display:flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--mut);margin-bottom:8px}
+.rv .q{font-weight:600;margin:0 0 12px}
+.rv ol{list-style:none;padding:0;margin:0 0 12px;display:grid;gap:6px}
+.rv li{padding:8px 12px;border-radius:var(--r2);border:var(--bw) solid var(--line);font-size:15px;display:grid;grid-template-columns:26px 1fr;gap:8px}
+.rv li.right{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 12%,transparent)}
+.rv li.wrong{border-color:var(--bad);background:color-mix(in srgb,var(--bad) 12%,transparent)}
+.rv .ex{font-size:15px;padding:12px 14px;border-radius:var(--r2);background:var(--bg2)}
+[data-theme="aurora"] .rv .ex{background:rgba(255,255,255,.06)}
+
+/* ---------- modal & theme drawer ---------- */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:50;padding:20px}
+.modal{max-width:440px;width:100%;padding:24px}
+.modal h3{font-size:22px;margin-bottom:8px}
+.modal .row{display:flex;gap:10px;justify-content:flex-end;margin-top:20px;flex-wrap:wrap}
+.drawer{max-width:900px}
+.drawer .themes{grid-template-columns:repeat(5,1fr)}
+footer{padding:30px 0 40px;font-size:13px;color:var(--mut)}
+
+@media (max-width:860px){
+ .levels,.kgrid{grid-template-columns:1fr}
+ .themes,.drawer .themes{grid-template-columns:repeat(2,1fr)}
+ .exam{grid-template-columns:1fr}
+ .side{position:static}
+ .rule{grid-template-columns:1fr 1fr}
+ .rule div:nth-child(2){border-right:0}
+ .rule div:nth-child(-n+2){border-bottom:var(--bw) solid var(--line)}
+ .set{grid-template-columns:auto 1fr;}
+ .set .best,.set .btn{grid-column:2}
+ .best{text-align:left}
+ .score{grid-template-columns:1fr;justify-items:start}
+ .bar{grid-template-columns:120px 1fr 56px}
+ nav.main{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.fade{animation:fd .35s ease both}@keyframes fd{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+</style>
+</head>
+<body data-theme="blueprint">
+<header class="top"><div class="wrap">
+ <button class="brand" data-go="home">Ôn thi <span>AI Dev</span></button>
+ <nav class="main" aria-label="Điều hướng">
+  <button data-go="home">Trang chủ</button><button data-go="L1">Level 1</button><button data-go="L2">Level 2</button>
+ </nav>
+ <div class="spacer"></div>
+ <button class="btn ghost" id="themeBtn" aria-haspopup="dialog">Giao diện</button>
+</div></header>
+<main id="app"></main>
+<div id="layer"></div>
+<script>
+const DATA=/*DATA*/;
+/*STUDY*/
+const THEMES=[
+ ["blueprint","Bảng mạch","Sáng, lưới kỹ thuật, xanh tín hiệu"],
+ ["aurora","Cực quang","Kính mờ trên nền gradient đêm"],
+ ["swiss","Thụy Sĩ","Đen – trắng – đỏ, chữ lớn, góc vuông"],
+ ["candy","Kẹo màu","Pastel, viền đậm, bóng lệch vui mắt"],
+ ["ide","Đêm IDE","Tối như editor, chữ mono cho tiêu đề"]];
+const store={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[c]);
+const LET="ABCD";
+let state={view:"home",level:null,tab:"learn",topic:"all",exam:null,result:null,reviewFilter:"all"};
+let timerId=null;
+
+function setTheme(t){document.body.dataset.theme=t;store.set("theme",t);document.querySelectorAll('.tile').forEach(b=>b.setAttribute('aria-pressed',b.dataset.theme===t))}
+function themeTiles(){const cur=document.body.dataset.theme;return `<div class="themes">${THEMES.map(([k,n,d])=>`<button class="tile" data-theme="${k}" data-set-theme="${k}" aria-pressed="${k===cur}"><span class="pv"><i>Ôn thi<br>Level 2</i><span class="ln"></span><span class="bt">Bắt đầu</span><span class="dot"></span></span><span class="nm">${n}</span><span class="ds">${d}</span></button>`).join('')}</div>`}
+function bestOf(lv,i){return store.get(`best_${lv}_${i}`,null)}
+function total(lv,i){return DATA[lv][i].reduce((a,q)=>a+q.w,0)}
+
+/* ---------- views ---------- */
+function vHome(){
+ const card=lv=>{const S=STUDY[lv];return `<section class="panel lv">
+  <span class="tag">${S.name} · ${esc(S.exam)}</span><h2>${esc(S.nick)}</h2><p>${esc(S.summary)}</p>
+  <div class="facts">${S.facts.map(f=>`<span><b>${f[0]}</b>${f[1]}</span>`).join('')}</div>
+  <div class="row"><button class="btn pri" data-go="${lv}" data-tab="sets">Làm bộ đề</button><button class="btn" data-go="${lv}" data-tab="learn">Ôn kiến thức</button><button class="btn ghost" data-go="${lv}" data-tab="tips">Mẹo làm bài</button></div></section>`};
+ return `<div class="wrap fade">
+ <section class="hero"><h1>Hai level, mười bộ đề, chấm như thi thật.</h1>
+ <p class="lead">Ôn lại kiến thức từ đề Level 1 và Level 2, nắm mẹo loại phương án, rồi luyện với 5 bộ đề mỗi level. Mỗi câu sai bị trừ một nửa số điểm — nên biết khi nào nên bỏ trống.</p>
+ <div class="panel rule" role="list">
+  <div class="ok" role="listitem"><b>+100%</b><small>điểm câu khi trả lời đúng</small></div>
+  <div class="bad" role="listitem"><b>−50%</b><small>điểm câu khi trả lời sai</small></div>
+  <div role="listitem"><b>0</b><small>khi bỏ trống</small></div>
+  <div class="pass" role="listitem"><b>&gt; 50%</b><small>tổng điểm là đạt</small></div>
+ </div></section>
+ <div class="levels">${card('L1')}${card('L2')}</div>
+ <div class="section-h"><h2>Chọn giao diện</h2><span class="mut">Bấm để áp dụng ngay — đổi lại lúc nào cũng được.</span></div>
+ ${themeTiles()}
+ <footer>Câu hỏi luyện tập được soạn lại theo chủ đề và phong cách của 2 đề gốc, không phải đề thật. Đề Level 1 &amp; 2 đều bằng tiếng Anh như bài thi; giải thích bằng tiếng Việt.</footer>
+ </div>`}
+
+function vLevel(){
+ const lv=state.level,S=STUDY[lv];
+ const tab=state.tab;
+ let body="";
+ if(tab==="learn"){
+  const secs=S.sections.filter(s=>state.topic==="all"||s.t===state.topic);
+  body=`<div class="chips" role="group" aria-label="Lọc chủ đề"><button class="chip" data-topic="all" aria-pressed="${state.topic==='all'}">Tất cả</button>${S.sections.map(s=>`<button class="chip" data-topic="${s.t}" aria-pressed="${state.topic===s.t}">${s.t} · ${TOPICS[s.t]}</button>`).join('')}</div>
+  ${secs.map(s=>`<section class="topic"><h3><span class="code">${s.t}</span>${TOPICS[s.t]}</h3><div class="kgrid">${s.items.map(([h,p])=>`<div class="panel k"><b>${esc(h)}</b><p>${esc(p)}</p></div>`).join('')}</div></section>`).join('')}`;
+ }else if(tab==="tips"){
+  body=`<div class="tips">${S.tips.map(([h,p])=>`<div class="panel tip"><b>${esc(h)}</b><p>${esc(p)}</p></div>`).join('')}</div>`;
+ }else{
+  body=`<div class="sets">${DATA[lv].map((set,i)=>{const b=bestOf(lv,i),T=total(lv,i);
+   const topics=[...new Set(set.map(q=>q.t))].join(', ');
+   return `<div class="panel set"><span class="num">${i+1}</span><div><h3>Bộ đề ${i+1}</h3><div class="meta">${set.length} câu · ${T} điểm · 30 phút · ${topics}</div></div>
+   <div class="best">${b?`<b>${b.pct}%</b><span class="pill ${b.pass?'ok':'bad'}">${b.pass?'Đạt':'Chưa đạt'}</span>`:'<span class="mut">Chưa làm</span>'}</div>
+   <button class="btn pri" data-start="${i}">${b?'Làm lại':'Bắt đầu'}</button></div>`}).join('')}</div>`;
+ }
+ return `<div class="wrap fade"><section class="lvhead"><span class="tag">${S.name} · ${esc(S.exam)}</span><h1>${esc(S.nick)}</h1><p>${esc(S.summary)}</p></section>
+ <div class="tabs" role="tablist">${[["learn","Kiến thức"],["tips","Mẹo làm bài"],["sets","5 bộ đề"]].map(([k,n])=>`<button role="tab" data-tab-only="${k}" aria-selected="${tab===k}">${n}</button>`).join('')}</div>
+ ${body}<footer></footer></div>`}
+
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function startExam(i){
+ const lv=state.level,set=DATA[lv][i];
+ state.exam={lv,set:i,cur:0,ans:Array(set.length).fill(null),flag:Array(set.length).fill(false),order:set.map(()=>shuffle([0,1,2,3])),end:Date.now()+30*60*1000};
+ state.view="exam";render();tick();
+}
+function tick(){clearInterval(timerId);timerId=setInterval(()=>{const e=state.exam;if(!e||state.view!=="exam"){clearInterval(timerId);return}
+ const left=Math.max(0,e.end-Date.now());const el=$('#timer');if(el){el.textContent=fmt(left);el.classList.toggle('low',left<5*60*1000)}
+ if(left<=0){clearInterval(timerId);finish(true)}},500)}
+function fmt(ms){const s=Math.ceil(ms/1000);return String(Math.floor(s/60)).padStart(2,'0')+":"+String(s%60).padStart(2,'0')}
+
+function vExam(){
+ const e=state.exam,set=DATA[e.lv][e.set],q=set[e.cur],ord=e.order[e.cur];
+ const answered=e.ans.filter(a=>a!==null).length;
+ return `<div class="exambar"><div class="wrap"><b>${STUDY[e.lv].name} · Bộ ${e.set+1}</b><div class="prog" aria-label="Đã trả lời ${answered}/${set.length}"><i style="width:${answered/set.length*100}%"></i></div><span class="mut">${answered}/${set.length}</span><span class="timer" id="timer">${fmt(e.end-Date.now())}</span></div></div>
+ <div class="wrap exam">
+  <section class="panel qcard" aria-live="polite">
+   <div class="qmeta"><span>Câu ${e.cur+1} / ${set.length}</span><span>${q.t} · ${TOPICS[q.t]}</span><span class="pts">${q.w} điểm · sai −${q.w/2}</span></div>
+   <p class="qtext">${esc(q.q)}</p>
+   <div class="opts">${ord.map((oi,k)=>`<button class="opt" data-pick="${oi}" aria-pressed="${e.ans[e.cur]===oi}"><span class="l">${LET[k]}</span><span>${esc(q.o[oi])}</span></button>`).join('')}</div>
+   <div class="qnav">
+    <button class="btn" data-move="-1" ${e.cur===0?'disabled':''}>Câu trước</button>
+    <button class="btn" data-move="1" ${e.cur===set.length-1?'disabled':''}>Câu sau</button>
+    <span class="spacer"></span>
+    <button class="btn ghost" data-clear ${e.ans[e.cur]===null?'disabled':''}>Bỏ chọn</button>
+    <button class="btn ghost" data-flag aria-pressed="${e.flag[e.cur]}">${e.flag[e.cur]?'Bỏ đánh dấu':'Đánh dấu xem lại'}</button>
+   </div>
+  </section>
+  <aside class="side">
+   <div class="panel palette"><h3>Danh sách câu</h3><div class="pgrid">${set.map((_,k)=>`<button data-jump="${k}" class="${e.ans[k]!==null?'ans':''} ${k===e.cur?'cur':''} ${e.flag[k]?'flag':''}" aria-label="Câu ${k+1}">${k+1}</button>`).join('')}</div>
+   <div class="legend"><span>Ô tô màu: đã trả lời</span><span>Chấm vàng: đánh dấu xem lại</span><span>Phím 1–4 chọn, ← → chuyển câu</span></div></div>
+   <div class="panel ev">Đoán bừa 1/4 có kỳ vọng <b>−12,5%</b> điểm câu. Loại được 2 phương án thì kỳ vọng <b>+25%</b>.</div>
+   <button class="btn pri" data-submit>Nộp bài</button>
+  </aside>
+ </div>`}
+
+function grade(e){
+ const set=DATA[e.lv][e.set];let score=0,T=0,c=0,w=0,b=0;const by={};
+ set.forEach((q,i)=>{T+=q.w;by[q.t]=by[q.t]||{s:0,T:0};by[q.t].T+=q.w;
+  const a=e.ans[i];let d=0;if(a===null)b++;else if(a===0){d=q.w;c++}else{d=-q.w/2;w++}
+  score+=d;by[q.t].s+=d});
+ const pct=Math.round(score/T*1000)/10;
+ return {score,T,pct,pass:pct>50,c,w,b,by};
+}
+function finish(auto){
+ clearInterval(timerId);const e=state.exam;const r=grade(e);r.auto=auto;
+ const prev=bestOf(e.lv,e.set);if(!prev||r.pct>prev.pct)store.set(`best_${e.lv}_${e.set}`,{pct:r.pct,pass:r.pass});
+ state.result=r;state.view="result";state.reviewFilter="all";closeLayer();render();window.scrollTo(0,0);
+}
+function vResult(){
+ const e=state.exam,r=state.result,set=DATA[e.lv][e.set];
+ const filt=state.reviewFilter;
+ const items=set.map((q,i)=>({q,i,a:e.ans[i]})).filter(x=>filt==="all"||(filt==="wrong"&&x.a!==null&&x.a!==0)||(filt==="blank"&&x.a===null)||(filt==="right"&&x.a===0));
+ const p=Math.max(0,Math.min(100,r.pct));
+ return `<div class="wrap res fade">
+ ${r.auto?'<p class="mut">Hết giờ — bài đã được nộp tự động.</p>':''}
+ <section class="panel score"><div class="ring" style="--p:${p};--c:${r.pass?'var(--ok)':'var(--bad)'}"><b>${r.pct}%</b></div>
+ <div><div class="verdict ${r.pass?'ok':'bad'}">${r.pass?'Đạt':'Chưa đạt'}</div>
+ <div class="mut">${STUDY[e.lv].name} · Bộ ${e.set+1} · cần trên 50% để đạt</div>
+ <div class="stats"><div><b>${r.score} / ${r.T}</b>điểm</div><div><b>${r.c}</b>đúng</div><div><b>${r.w}</b>sai</div><div><b>${r.b}</b>bỏ trống</div></div>
+ <div class="qnav"><button class="btn pri" data-restart>Làm lại bộ này</button><button class="btn" data-go="${e.lv}" data-tab="sets">Về danh sách bộ đề</button><button class="btn ghost" data-go="${e.lv}" data-tab="learn">Ôn kiến thức</button></div></div></section>
+ <div class="section-h"><h2>Theo chủ đề</h2></div>
+ <section class="panel bars">${Object.entries(r.by).map(([t,v])=>{const pp=Math.max(0,Math.round(v.s/v.T*100));return `<div class="bar"><span>${t} · ${TOPICS[t]}</span><span class="t"><i style="width:${pp}%"></i></span><b>${v.s}/${v.T}</b></div>`}).join('')}</section>
+ <div class="section-h"><h2>Xem lại bài</h2></div>
+ <div class="chips" role="group">${[["all","Tất cả"],["wrong","Sai"],["blank","Bỏ trống"],["right","Đúng"]].map(([k,n])=>`<button class="chip" data-rf="${k}" aria-pressed="${filt===k}">${n}</button>`).join('')}</div>
+ ${items.length?items.map(({q,i,a})=>{const ord=e.order[i];const st=a===null?'<span class="pill bad">Bỏ trống · 0</span>':a===0?`<span class="pill ok">Đúng · +${q.w}</span>`:`<span class="pill bad">Sai · −${q.w/2}</span>`;
+  return `<article class="panel rv"><div class="h"><b>Câu ${i+1}</b><span>${q.t} · ${TOPICS[q.t]}</span>${st}</div><p class="q">${esc(q.q)}</p>
+  <ol>${ord.map((oi,k)=>`<li class="${oi===0?'right':(oi===a?'wrong':'')}"><b>${LET[k]}</b><span>${esc(q.o[oi])}${oi===a?' <em>(bạn chọn)</em>':''}</span></li>`).join('')}</ol>
+  <div class="ex">${esc(q.e)}</div></article>`}).join(''):'<p class="mut">Không có câu nào trong mục này.</p>'}
+ </div>`}
+
+function render(){
+ const v=state.view;
+ document.querySelectorAll('nav.main button').forEach(b=>b.setAttribute('aria-current',(v==="home"&&b.dataset.go==="home")||((v==="level"||v==="exam"||v==="result")&&b.dataset.go===state.level)));
+ $('#app').innerHTML=v==="home"?vHome():v==="level"?vLevel():v==="exam"?vExam():vResult();
+}
+function modal(html){$('#layer').innerHTML=`<div class="scrim" data-close><div class="panel modal" role="dialog" aria-modal="true">${html}</div></div>`;const f=$('#layer .btn');f&&f.focus()}
+function closeLayer(){$('#layer').innerHTML=""}
+function askSubmit(){const e=state.exam;const n=e.ans.filter(a=>a===null).length,f=e.flag.filter(Boolean).length;
+ modal(`<h3>Nộp bài?</h3><p class="mut">${n?`Còn ${n} câu bỏ trống (tính 0 điểm). `:'Bạn đã trả lời hết. '}${f?`${f} câu đang đánh dấu xem lại.`:''}</p><div class="row"><button class="btn" data-close>Làm tiếp</button><button class="btn pri" data-finish>Nộp bài</button></div>`)}
+
+document.addEventListener('click',ev=>{
+ const t=ev.target.closest('button,[data-close]');if(!t)return;
+ if(t.matches('.scrim')&&ev.target!==t)return;
+ const d=t.dataset;
+ if(d.setTheme){setTheme(d.setTheme);return}
+ if('close' in d){closeLayer();return}
+ if(d.go){if(state.view==="exam"&&!confirmLeave(d))return;go(d.go,d.tab);return}
+ if(d.tabOnly){state.tab=d.tabOnly;render();return}
+ if(d.topic){state.topic=d.topic;render();return}
+ if(d.start){startExam(+d.start);window.scrollTo(0,0);return}
+ const e=state.exam;
+ if(d.pick&&e){e.ans[e.cur]=+d.pick;render();return}
+ if(d.move&&e){e.cur=Math.max(0,Math.min(DATA[e.lv][e.set].length-1,e.cur+ +d.move));render();return}
+ if(d.jump&&e){e.cur=+d.jump;render();return}
+ if('clear' in d&&e){e.ans[e.cur]=null;render();return}
+ if('flag' in d&&e){e.flag[e.cur]=!e.flag[e.cur];render();return}
+ if('submit' in d){askSubmit();return}
+ if('finish' in d){finish(false);return}
+ if('restart' in d){startExam(e.set);window.scrollTo(0,0);return}
+ if(d.rf){state.reviewFilter=d.rf;render();return}
+});
+let pendingGo=null;
+function confirmLeave(d){if(pendingGo)return true;pendingGo=d;modal(`<h3>Rời bài thi?</h3><p class="mut">Bài đang làm sẽ không được lưu.</p><div class="row"><button class="btn" data-close>Ở lại</button><button class="btn pri" id="leaveOk">Rời đi</button></div>`);
+ $('#leaveOk').onclick=()=>{const g=pendingGo;pendingGo=null;closeLayer();clearInterval(timerId);state.exam=null;go(g.go,g.tab)};
+ $('#layer [data-close].btn').onclick=()=>{pendingGo=null;closeLayer()};return false}
+function go(where,tab){if(where==="home"){state.view="home"}else{state.view="level";state.level=where;state.tab=tab||"learn";state.topic="all"}render();window.scrollTo(0,0)}
+document.addEventListener('keydown',ev=>{
+ if(ev.key==="Escape"){if($('#layer').innerHTML){pendingGo=null;closeLayer()}return}
+ if(state.view!=="exam"||$('#layer').innerHTML)return;const e=state.exam;
+ const k=ev.key.toLowerCase();const idx="1234".indexOf(k)>=0?"1234".indexOf(k):"abcd".indexOf(k);
+ if(idx>=0&&!ev.metaKey&&!ev.ctrlKey){e.ans[e.cur]=e.order[e.cur][idx];render()}
+ else if(ev.key==="ArrowRight"){e.cur=Math.min(DATA[e.lv][e.set].length-1,e.cur+1);render()}
+ else if(ev.key==="ArrowLeft"){e.cur=Math.max(0,e.cur-1);render()}
+});
+$('#themeBtn').onclick=()=>{$('#layer').innerHTML=`<div class="scrim" data-close><div class="panel modal drawer" role="dialog" aria-modal="true" aria-label="Chọn giao diện"><h3>Chọn giao diện</h3><p class="mut">5 phong cách — bấm để xem ngay.</p>${themeTiles()}<div class="row"><button class="btn pri" data-close>Xong</button></div></div></div>`};
+setTheme(store.get("theme","blueprint"));render();
+</script>
+</body>
+</html>
