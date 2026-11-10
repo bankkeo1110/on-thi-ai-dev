@@ -228,7 +228,7 @@ const DATA={"L1":[[{"t":"C1","w":10,"q":"A developer runs Llama 70B Q4 (≈40 GB
 const TOPICS={C1:"Nền tảng AI",C2:"Prompting & tương tác",C3:"Công cụ & quy trình",C4:"Rủi ro & quản trị"};
 const STUDY={
 L1:{
-name:"Level 1",nick:"Phổ độ chúng sinh",exam:"AI for Developers Assessment",
+name:"Level 1",nick:"AI Level 1",exam:"AI for Developers Assessment",
 summary:"Hỏi sâu về cơ chế: vì sao model chậm, quên, bỏ qua chỉ dẫn, và những quy tắc cứng trong Working Agreements. Đáp án dài, nhiều phương án nghe rất hợp lý — phải chọn đúng cơ chế gốc.",
 facts:[["30 câu","đề thật, mỗi câu 10 điểm"],["~45 phút","khoảng 1,5 phút/câu"],["4 nhóm","C1 → C4, cấp độ 2–5"]],
 sections:[
@@ -275,9 +275,9 @@ tips:[
 ["Governance: chọn phương án nghiêm nhất","Với câu về Working Agreements, đáp án đúng thường là quy tắc cứng: con người viết code bảo mật, cổng người trước hành động không đảo ngược, minh bạch với khách hàng, dùng công cụ được cấp phép."],
 ["Từ tuyệt đối thường là bẫy","'always', 'guarantees', 'eliminates', 'regardless' trong phương án kỹ thuật thường sai. Ngoại lệ: các lệnh cấm trong governance (không bao giờ dán secrets, không dùng free tool cho dữ liệu khách hàng)."],
 ["Đừng chọn theo độ dài","Cả đáp án đúng lẫn sai đều dài và trau chuốt. Đọc mệnh đề sau dấu gạch ngang — đó là chỗ lý do sai được cài vào."],
-["Chiến lược trả lời khi bị trừ điểm","Đoán bừa 1/4 có kỳ vọng âm (−12,5% điểm câu). Loại được 1 phương án thì hoà vốn; loại được 2 thì lãi +25%. Chỉ trả lời khi đã loại được ít nhất 1–2 phương án."]]},
+["Không bao giờ bỏ trống","Bỏ trống bị trừ 50% như câu sai. Đoán bừa 1/4 chỉ mất trung bình 12,5%; loại được 2 phương án thì còn lãi +25%. Luôn chọn một đáp án, kể cả khi hết giờ."]]},
 L2:{
-name:"Level 2",nick:"AI Developer 2",exam:"3rd AI Developer 2",
+name:"Level 2",nick:"AI Level 2",exam:"3rd AI Developer 2",
 summary:"Câu ngắn, tình huống làm việc hằng ngày với AI. Gần như mọi câu xoay quanh một ý: kết quả của AI chưa phải bằng chứng — hãy đối chiếu với nguồn sự thật và giữ ranh giới phê duyệt. Ngưỡng đạt 50%, câu khó nặng tới 32 điểm.",
 facts:[["30 câu","đề thật, 20 / 22 / 32 điểm"],["~45 phút","đạt khi > 50%"],["1 nguyên tắc","bằng chứng thật, không phải lời AI"]],
 sections:[
@@ -318,7 +318,7 @@ tips:[
 ["Output ngắn không cứu được input","Mọi phương án 'xin trả lời ngắn hơn' đều sai khi vấn đề là input quá dài hoặc ràng buộc bị chôn."],
 ["Phòng trước, không dọn sau","Câu về dữ liệu nhạy cảm: đáp án đúng xử lý trước khi vượt ranh giới (trước upload, trước booking, trước publish)."],
 ["Câu 32 điểm đáng thời gian nhất","Sai một câu 32 điểm mất 16. Làm kỹ các câu dài về quy trình/ranh giới; câu 20 điểm thường là kiến thức nền."],
-["Chiến lược khi bị trừ điểm","Đoán bừa 1/4 có kỳ vọng âm. Loại được 2 phương án thì nên trả lời (+25% điểm câu); không loại được gì thì bỏ trống."]]}};
+["Không bao giờ bỏ trống","Bỏ trống bị trừ 50% như câu sai, nên đoán vẫn lợi hơn. Loại được 2 phương án thì kỳ vọng +25% điểm câu. Chọn một đáp án cho mọi câu."]]}};
 
 const THEMES=[
  ["blueprint","Bảng mạch","Sáng, lưới kỹ thuật, xanh tín hiệu"],
@@ -346,11 +346,11 @@ function vHome(){
   <div class="row"><button class="btn pri" data-go="${lv}" data-tab="sets">Làm bộ đề</button><button class="btn" data-go="${lv}" data-tab="learn">Ôn kiến thức</button><button class="btn ghost" data-go="${lv}" data-tab="tips">Mẹo làm bài</button></div></section>`};
  return `<div class="wrap fade">
  <section class="hero"><h1>Hai level, mười bộ đề, chấm như thi thật.</h1>
- <p class="lead">Ôn lại kiến thức từ đề Level 1 và Level 2, nắm mẹo loại phương án, rồi luyện với 5 bộ đề mỗi level. Mỗi câu sai bị trừ một nửa số điểm — nên biết khi nào nên bỏ trống.</p>
+ <p class="lead">Ôn lại kiến thức từ đề Level 1 và Level 2, nắm mẹo loại phương án, rồi luyện với 5 bộ đề mỗi level. Câu sai hoặc bỏ trống đều bị trừ một nửa số điểm câu — luôn chọn một đáp án.</p>
  <div class="panel rule" role="list">
   <div class="ok" role="listitem"><b>+100%</b><small>điểm câu khi trả lời đúng</small></div>
   <div class="bad" role="listitem"><b>−50%</b><small>điểm câu khi trả lời sai</small></div>
-  <div role="listitem"><b>0</b><small>khi bỏ trống</small></div>
+  <div class="bad" role="listitem"><b>−50%</b><small>khi bỏ trống, tính như câu sai</small></div>
   <div class="pass" role="listitem"><b>&gt; 50%</b><small>tổng điểm là đạt</small></div>
  </div></section>
  <div class="levels">${card('L1')}${card('L2')}</div>
@@ -411,7 +411,7 @@ function vExam(){
   <aside class="side">
    <div class="panel palette"><h3>Danh sách câu</h3><div class="pgrid">${set.map((_,k)=>`<button data-jump="${k}" class="${e.ans[k]!==null?'ans':''} ${k===e.cur?'cur':''} ${e.flag[k]?'flag':''}" aria-label="Câu ${k+1}">${k+1}</button>`).join('')}</div>
    <div class="legend"><span>Ô tô màu: đã trả lời</span><span>Chấm vàng: đánh dấu xem lại</span><span>Phím 1–4 chọn, ← → chuyển câu</span></div></div>
-   <div class="panel ev">Đoán bừa 1/4 có kỳ vọng <b>−12,5%</b> điểm câu. Loại được 2 phương án thì kỳ vọng <b>+25%</b>.</div>
+   <div class="panel ev">Bỏ trống bị trừ <b>50%</b> như câu sai. Đoán bừa vẫn chỉ mất trung bình <b>12,5%</b> — luôn chọn một đáp án.</div>
    <button class="btn pri" data-submit>Nộp bài</button>
   </aside>
  </div>`}
@@ -419,7 +419,7 @@ function vExam(){
 function grade(e){
  const set=DATA[e.lv][e.set];let score=0,T=0,c=0,w=0,b=0;const by={};
  set.forEach((q,i)=>{T+=q.w;by[q.t]=by[q.t]||{s:0,T:0};by[q.t].T+=q.w;
-  const a=e.ans[i];let d=0;if(a===null)b++;else if(a===0){d=q.w;c++}else{d=-q.w/2;w++}
+  const a=e.ans[i];let d;if(a===null){d=-q.w/2;b++}else if(a===0){d=q.w;c++}else{d=-q.w/2;w++}
   score+=d;by[q.t].s+=d});
  const pct=Math.round(score/T*1000)/10;
  return {score,T,pct,pass:pct>50,c,w,b,by};
@@ -445,7 +445,7 @@ function vResult(){
  <section class="panel bars">${Object.entries(r.by).map(([t,v])=>{const pp=Math.max(0,Math.round(v.s/v.T*100));return `<div class="bar"><span>${t} · ${TOPICS[t]}</span><span class="t"><i style="width:${pp}%"></i></span><b>${v.s}/${v.T}</b></div>`}).join('')}</section>
  <div class="section-h"><h2>Xem lại bài</h2></div>
  <div class="chips" role="group">${[["all","Tất cả"],["wrong","Sai"],["blank","Bỏ trống"],["right","Đúng"]].map(([k,n])=>`<button class="chip" data-rf="${k}" aria-pressed="${filt===k}">${n}</button>`).join('')}</div>
- ${items.length?items.map(({q,i,a})=>{const ord=e.order[i];const st=a===null?'<span class="pill bad">Bỏ trống · 0</span>':a===0?`<span class="pill ok">Đúng · +${q.w}</span>`:`<span class="pill bad">Sai · −${q.w/2}</span>`;
+ ${items.length?items.map(({q,i,a})=>{const ord=e.order[i];const st=a===null?`<span class="pill bad">Bỏ trống · −${q.w/2}</span>`:a===0?`<span class="pill ok">Đúng · +${q.w}</span>`:`<span class="pill bad">Sai · −${q.w/2}</span>`;
   return `<article class="panel rv"><div class="h"><b>Câu ${i+1}</b><span>${q.t} · ${TOPICS[q.t]}</span>${st}</div><p class="q">${esc(q.q)}</p>
   <ol>${ord.map((oi,k)=>`<li class="${oi===0?'right':(oi===a?'wrong':'')}"><b>${LET[k]}</b><span>${esc(q.o[oi])}${oi===a?' <em>(bạn chọn)</em>':''}</span></li>`).join('')}</ol>
   <div class="ex">${esc(q.e)}</div></article>`}).join(''):'<p class="mut">Không có câu nào trong mục này.</p>'}
@@ -459,7 +459,7 @@ function render(){
 function modal(html){$('#layer').innerHTML=`<div class="scrim" data-close><div class="panel modal" role="dialog" aria-modal="true">${html}</div></div>`;const f=$('#layer .btn');f&&f.focus()}
 function closeLayer(){$('#layer').innerHTML=""}
 function askSubmit(){const e=state.exam;const n=e.ans.filter(a=>a===null).length,f=e.flag.filter(Boolean).length;
- modal(`<h3>Nộp bài?</h3><p class="mut">${n?`Còn ${n} câu bỏ trống (tính 0 điểm). `:'Bạn đã trả lời hết. '}${f?`${f} câu đang đánh dấu xem lại.`:''}</p><div class="row"><button class="btn" data-close>Làm tiếp</button><button class="btn pri" data-finish>Nộp bài</button></div>`)}
+ modal(`<h3>Nộp bài?</h3><p class="mut">${n?`Còn ${n} câu bỏ trống — mỗi câu bị trừ 50% điểm như câu sai. `:'Bạn đã trả lời hết. '}${f?`${f} câu đang đánh dấu xem lại.`:''}</p><div class="row"><button class="btn" data-close>Làm tiếp</button><button class="btn pri" data-finish>Nộp bài</button></div>`)}
 
 document.addEventListener('click',ev=>{
  const t=ev.target.closest('button,[data-close]');if(!t)return;

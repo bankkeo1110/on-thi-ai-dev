@@ -1,7 +1,7 @@
 const TOPICS={C1:"Nền tảng AI",C2:"Prompting & tương tác",C3:"Công cụ & quy trình",C4:"Rủi ro & quản trị"};
 const STUDY={
 L1:{
-name:"Level 1",nick:"Phổ độ chúng sinh",exam:"AI for Developers Assessment",
+name:"Level 1",nick:"AI Level 1",exam:"AI for Developers Assessment",
 summary:"Hỏi sâu về cơ chế: vì sao model chậm, quên, bỏ qua chỉ dẫn, và những quy tắc cứng trong Working Agreements. Đáp án dài, nhiều phương án nghe rất hợp lý — phải chọn đúng cơ chế gốc.",
 facts:[["30 câu","đề thật, mỗi câu 10 điểm"],["~45 phút","khoảng 1,5 phút/câu"],["4 nhóm","C1 → C4, cấp độ 2–5"]],
 sections:[
@@ -48,9 +48,9 @@ tips:[
 ["Governance: chọn phương án nghiêm nhất","Với câu về Working Agreements, đáp án đúng thường là quy tắc cứng: con người viết code bảo mật, cổng người trước hành động không đảo ngược, minh bạch với khách hàng, dùng công cụ được cấp phép."],
 ["Từ tuyệt đối thường là bẫy","'always', 'guarantees', 'eliminates', 'regardless' trong phương án kỹ thuật thường sai. Ngoại lệ: các lệnh cấm trong governance (không bao giờ dán secrets, không dùng free tool cho dữ liệu khách hàng)."],
 ["Đừng chọn theo độ dài","Cả đáp án đúng lẫn sai đều dài và trau chuốt. Đọc mệnh đề sau dấu gạch ngang — đó là chỗ lý do sai được cài vào."],
-["Chiến lược trả lời khi bị trừ điểm","Đoán bừa 1/4 có kỳ vọng âm (−12,5% điểm câu). Loại được 1 phương án thì hoà vốn; loại được 2 thì lãi +25%. Chỉ trả lời khi đã loại được ít nhất 1–2 phương án."]]},
+["Không bao giờ bỏ trống","Bỏ trống bị trừ 50% như câu sai. Đoán bừa 1/4 chỉ mất trung bình 12,5%; loại được 2 phương án thì còn lãi +25%. Luôn chọn một đáp án, kể cả khi hết giờ."]]},
 L2:{
-name:"Level 2",nick:"AI Developer 2",exam:"3rd AI Developer 2",
+name:"Level 2",nick:"AI Level 2",exam:"3rd AI Developer 2",
 summary:"Câu ngắn, tình huống làm việc hằng ngày với AI. Gần như mọi câu xoay quanh một ý: kết quả của AI chưa phải bằng chứng — hãy đối chiếu với nguồn sự thật và giữ ranh giới phê duyệt. Ngưỡng đạt 50%, câu khó nặng tới 32 điểm.",
 facts:[["30 câu","đề thật, 20 / 22 / 32 điểm"],["~45 phút","đạt khi > 50%"],["1 nguyên tắc","bằng chứng thật, không phải lời AI"]],
 sections:[
@@ -91,4 +91,4 @@ tips:[
 ["Output ngắn không cứu được input","Mọi phương án 'xin trả lời ngắn hơn' đều sai khi vấn đề là input quá dài hoặc ràng buộc bị chôn."],
 ["Phòng trước, không dọn sau","Câu về dữ liệu nhạy cảm: đáp án đúng xử lý trước khi vượt ranh giới (trước upload, trước booking, trước publish)."],
 ["Câu 32 điểm đáng thời gian nhất","Sai một câu 32 điểm mất 16. Làm kỹ các câu dài về quy trình/ranh giới; câu 20 điểm thường là kiến thức nền."],
-["Chiến lược khi bị trừ điểm","Đoán bừa 1/4 có kỳ vọng âm. Loại được 2 phương án thì nên trả lời (+25% điểm câu); không loại được gì thì bỏ trống."]]}};
+["Không bao giờ bỏ trống","Bỏ trống bị trừ 50% như câu sai, nên đoán vẫn lợi hơn. Loại được 2 phương án thì kỳ vọng +25% điểm câu. Chọn một đáp án cho mọi câu."]]}};
