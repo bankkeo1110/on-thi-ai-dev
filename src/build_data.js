@@ -1,8 +1,13 @@
 const fs=require('fs');global.L1=[];global.L2=[];
-for(const f of ['l1_a','l1_b','l2_a','l2_b','l2_c','patch_d1']) eval.call(global, fs.readFileSync(f+'.js','utf8').replace(/^const /mg,'global.').replace(/^(P[12]) =/mg,'global.$1 ='));
+const load=f=>eval.call(global, fs.readFileSync(f+'.js','utf8').replace(/^const (P[12]) =/mg,'global.$1 =').replace(/^(L[12]X|PX[12]) =/mg,'global.$1 ='));
+for(const f of ['l1_a','l1_b','l2_a','l2_b','l2_c','patch_d1','l1_x','l2_x','patch_x']) load(f);
 P1.forEach((s,i)=>{if(s.length!==20)throw 'P1 len '+i; s.forEach((t,j)=>{if(j%3!==0)L1[i][j][2][1]=t})});
 P2.forEach((s,i)=>{if(s.length!==20)throw 'P2 len '+i; s.forEach((t,j)=>L2[i][j][3][1]=t)});
+PX1.forEach((s,i)=>s.forEach((t,j)=>{if(t&&j%3!==0)L1X[i][j][2][1]=t}));PX2.forEach((s,i)=>s.forEach((t,j)=>{L2X[i][j][3][1]=t}));
+L1X.forEach((s,i)=>{if(s.length!==10)throw 'L1X '+i; L1[i].push(...s)});
+L2X.forEach((s,i)=>{if(s.length!==10)throw 'L2X '+i; L2[i].push(...s)});
+for(const L of [L1,L2]) L.forEach((s,i)=>{if(s.length!==30)throw 'len '+i; s.forEach(q=>{const o=q[q.length-2];if(o.length!==4||new Set(o).size!==4)throw 'opts '+q[q.length-3]})});
 const stat=(L,k)=>{let c=0,n=0;L.flat().forEach(q=>{const l=q[k].map(o=>o.length);n++;if(l[0]===Math.max(...l))c++});return c+'/'+n};
-console.log('sets',L1.length,L2.length,'correct-longest L1',stat(L1,2),'L2',stat(L2,3));
+console.log('sets',L1.map(s=>s.length),L2.map(s=>s.length),'correct-longest L1',stat(L1,2),'L2',stat(L2,3));
 const out={L1:L1.map(s=>s.map(([t,q,o,e])=>({t,w:10,q,o,e}))),L2:L2.map(s=>s.map(([t,w,q,o,e])=>({t,w,q,o,e})))};
-fs.writeFileSync('data.json',JSON.stringify(out));console.log('bytes',fs.statSync('data.json').size, 'L2 totals',out.L2.map(s=>s.reduce((a,q)=>a+q.w,0)));
+fs.writeFileSync('data.json',JSON.stringify(out));console.log('L2 totals',out.L2.map(s=>s.reduce((a,q)=>a+q.w,0)),'topics L1',out.L1.map(s=>['C1','C2','C3','C4'].map(t=>s.filter(q=>q.t==t).length).join('/')));

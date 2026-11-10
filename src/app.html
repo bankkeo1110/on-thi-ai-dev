@@ -278,7 +278,7 @@ function vLevel(){
  }else{
   body=`<div class="sets">${DATA[lv].map((set,i)=>{const b=bestOf(lv,i),T=total(lv,i);
    const topics=[...new Set(set.map(q=>q.t))].join(', ');
-   return `<div class="panel set"><span class="num">${i+1}</span><div><h3>Bộ đề ${i+1}</h3><div class="meta">${set.length} câu · ${T} điểm · 30 phút · ${topics}</div></div>
+   return `<div class="panel set"><span class="num">${i+1}</span><div><h3>Bộ đề ${i+1}</h3><div class="meta">${set.length} câu · ${T} điểm · 45 phút · ${topics}</div></div>
    <div class="best">${b?`<b>${b.pct}%</b><span class="pill ${b.pass?'ok':'bad'}">${b.pass?'Đạt':'Chưa đạt'}</span>`:'<span class="mut">Chưa làm</span>'}</div>
    <button class="btn pri" data-start="${i}">${b?'Làm lại':'Bắt đầu'}</button></div>`}).join('')}</div>`;
  }
@@ -289,7 +289,7 @@ function vLevel(){
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
 function startExam(i){
  const lv=state.level,set=DATA[lv][i];
- state.exam={lv,set:i,cur:0,ans:Array(set.length).fill(null),flag:Array(set.length).fill(false),order:set.map(()=>shuffle([0,1,2,3])),end:Date.now()+30*60*1000};
+ state.exam={lv,set:i,cur:0,ans:Array(set.length).fill(null),flag:Array(set.length).fill(false),order:set.map(()=>shuffle([0,1,2,3])),end:Date.now()+45*60*1000};
  state.view="exam";render();tick();
 }
 function tick(){clearInterval(timerId);timerId=setInterval(()=>{const e=state.exam;if(!e||state.view!=="exam"){clearInterval(timerId);return}

@@ -3,7 +3,7 @@
 Static web app to practise for the AI Developer assessments.
 
 - Study notes and exam tips for Level 1 ("Phổ độ chúng sinh") and Level 2
-- 5 practice sets per level (20 questions each)
+- 5 practice sets per level (30 questions each, 45-minute timer)
 - Scoring: correct +100% of the question's points, wrong −50%, blank 0; pass when total > 50%
 - 5 switchable UI themes
 
